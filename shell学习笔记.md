@@ -200,3 +200,4 @@ d 											#删除一个分区
 youtube-dl -r 300k				#限制下载速度为300k
 youtube-dl --proxy socks5://127.0.0.1 
 scp root@136.244.109.14:/root/ssr.sh ~/music 			#从远程主机拷贝文件到本地
+scp ~/doc/shell学习笔记 @root@136.244.109.14:/root/     #从本地复制到远程服务器
