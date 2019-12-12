@@ -1,0 +1,313 @@
+五个扑水的少年	日本电影
+
+ncdu				可视化磁盘空间工具
+tmux
+zsh
+wudao-dict
+trash-cli
+youtube-dl
+you-get
+musicbox
+fuck
+htop
+ranger
+du * -h 		查看当前目录下文件的占用
+axel
+fzf			使用方法
+neofetch	在终端显示linux系统信息的命令行工具 ,macos可用
+convert命令
+
+
+ffmpeg -i input.mp4 -vn output.mp3			把指定文件转换成mp3格式
+ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320 -f mp3 output.mp3
+在这里，
+
+-vn – 表明我们已经在输出文件中禁用视频录制。
+-ar – 设置输出文件的音频频率。通常使用的值是22050 Hz、44100 Hz、48000 Hz。
+-ac – 设置音频通道的数目。
+-ab – 表明音频比特率。
+-f – 输出文件格式。在我们的实例中，它是 mp3 格式。
+
+$ ffmpeg -i input.mp4 -an output.mp4					从一个视频中移除音频流
+
+$ ffmpeg -i input.mp4 -ss 00:00:50 -codec copy -t 50 output.mp4			剪切整段视频的一部分,从50秒开始,持续50秒
+
+# cat /tmp/pack1.txt | xargs pacman -S 				一次性安装pack1.txt中列出的软件包
+
+
+学习命令行工具
+学习python
+看书
+
+
+alias helan="ssh root@136.244.109.14 -i ~/.ssh/id_rsa"
+alias ubuntu='ssh sk@server.example.com -i ~/.ssh/id_rsa_remotesystem'
+
+git命令入门:
+git init 		 把当前目录初始化成一个git仓库:
+git add file		添加到提交列表中
+git add .	 			添加当前目录下的所有文件
+git status		查看当前目录的git状态
+git reset 			撤销要提交的项目
+touch .gitignore 		添加想要git忽略管理的文件列表,需要在此文件中写入
+git rm --cached file 	使git停止追踪已追踪的文件
+
+
+ranger操作指南:
+默认操作:
+在打开的当前目录下shift+s 		可以在terminal下打开当前路径,最左列
+选中文件/文件夹后按cw					重命名选中文件/文件夹
+dd													cut
+pp													paste
+dU 													显示当前目录下所有文件的大小
+C-h 													隐藏/显示隐藏文件
+ge 													cd /etc
+sudo ln -s /usr/bin/vim /usr/bin/nano  		把默认的nano编辑器更改成vim
+
+
+pacman的配置文件:
+etc/pacman.conf
+自定义中国源地址: 			??????如何使用????
+
+133 super_l
+
+vim基本配置:
+set mouse=a
+set ruler
+set nu
+set noswapfile
+syntax on
+colorscheme desert
+
+
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+call plug#end()
+
+export EDITOR=vim 						#修改bash/zsh下的默认编辑器,在bashrc/zshrc中添加此行即可
+
+sudo hdparm -S 120 /dev/sdc1		#set硬盘sdc1在10分钟(120/12=10)后休眠
+
+locate -r '\w*\.nsp$'		#使用正则表达式查找,表达式含义为查找扩展名为.nsp的文件
+
+find . -name '$1'				#在当前目录下查找,函数体
+
+ranger快捷键:
+zh 		显示/不显示隐藏文件
+um 书签名		取消书签
+m 	书签名			添加书签
+` 书签名			打开书签
+yy      复制
+dd      剪切
+pp      粘贴
+delete  删除
+cw      重命名
+
+gh 	 回到家目录
+
+
+使用ssh命令添加public key到远程主机,这样可以不用每次输入远程服务器密码
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@remote_ip 			#添加生成的公钥到远程主机
+ssh-add ~/.ssh/id_rsa 			#添加私钥到本地主机(需要先输入'ssh-agent bash')
+ssh-keygen -f ~/.ssh/id_rsa_test11 -P '123456' 				#生成密钥对,并指定私钥使用密码,这样每次登录只需要输入私钥密码
+
+
+rm -rfv `find ./ -inum 1059660` 		#通过innode删除乱码文件,要使用反引号包围此命令	
+编辑一条长命令时,可以先按ctrl-x,在按ctrl-e,这样可以打开默认编辑器编辑命令嗯,以vim为例,修改玩命令之后按wq保存退出即可
+
+
+xargs	 						此命令结合管道可以执行批量操作,但一次只执行一条命令,大部分情况下比-exec好用.
+									例如find . -type f -print |  xargs file 				#xargs为后面的命令提供了从find输出的参数
+
+在 Bash 脚本中，使用 set -x 去调试输出（或者使用它的变体 set -v，它会记录原始输入，包括多余的参数和注释）。尽可能地使用严格模式：使用 set -e 令脚本在发生错误时退出而不是继续运行；使用 set -u 来检查是否使用了未赋值的变量；试试 set -o pipefail，它可以监测管道中的错误。当牵扯到很多脚本时，使用 trap 来检测 ERR 和 EXIT。一个好的习惯是在脚本文件开头这样写，这会使它能够检测一些错误，并在错误发生时中断程序并输出信息：
+
+      set -euo pipefail
+      trap "echo 'error: Script failed: see failed command above'" ERR
+
+如何使用bash脚本建立有规律的目录树??
+mosh				一个ssh的替代品,使用udp协议,更不容易断开,更小的带宽开销.(但服务器端需要配置)
+
+将 web 服务器上当前目录下所有的文件（以及子目录）暴露给你所处网络的所有用户，使用： 
+python -m SimpleHTTPServer 7777 （使用端口 7777 和 Python 2）
+或python -m http.server 7777 （使用端口 7777 和 Python 3）。
+
+以其他用户的身份执行命令，使用 sudo。默认以 root 用户的身份执行；使用 -u 来指定其他用户。使用 -i 来以该用户登录（需要输入_你自己的_密码）。
+
+将 shell 切换为其他用户，使用 su username 或者 sudo - username。加入 - 会使得切换后的环境与使用该用户登录后的环境相同。省略用户名则默认为 root。切换到哪个用户，就需要输入_哪个用户的_密码。
+
+ 博客园帐号密码:
+axel000
+gentoo.021
+
+sed -n '2p' file.txt 										#显示file.txt的第二行到stout,不加-n则显示全文,并且第二行显示两遍
+
+待研究:
+wherein () 
+{ 
+ for i in $(find"$1" -type f 2>/dev/null);
+ do
+ if grep --color=auto -i"$2""$i" 2>/dev/null; then
+ echo -e"33[0;32mFound in: $i 33[0mn";
+ fi;
+ done
+}
+
+grep -Iwr 'hello' ~ 								#在家目录下递归搜索包含'hello'的文件并显示文件名,-w表示全字匹配,-I表示不匹配二进制,-r表示递归搜索.
+
+一. 命令awk简介
+
+1. awk是一种编程语言，用于对文本和数据进行处理的
+
+2. 具有强大的文本格式化能力
+3. 利用命令awk，可以将一些文本整理成为我们想要的样子
+4. 命令awk是逐行进行处理的
+
+ nmcli dev wifi connect Hackernet password localhost22 				#使用nmcli连接指定wifi
+
+
+ 查找文件
+ 编辑文件
+ 移动复制剪切文件
+ 看视频
+
+ sudo blkid						查看磁盘设备对应的id
+#ranger 快捷键					zp  打开/关闭文件预览功能 
+unzip xxx.zip -d ./zipdir   -d参数用来指定解压缩目录
+
+linux下的磁盘管理命令：
+df -Th 									显示各个设备的磁盘占用量
+
+
+arch下的包管理软件：
+pacman
+yaourt
+yay
+未完成待整理
+
+
+/etc/resolv.conf 			某些linux（比如arch的dns配置文件）
+
+
+bash基础之三配置文件 (来源 https://www.cnblogs.com/liuzhiyun/p/11317285.html)
+一、shell的两种登录方式：
+1、交互式登录：
+(1)直接通过终端输入账号密码登录
+(2)使用“su - UserName” 或“su -l Username”切换的用户
+执行顺序：/etc/profile --> /etc/profile.d/*.sh (所有文件)--> ~/.bash_profile(用户家目录下的) --> ~/.bashrc --> /etc/bashrc
+
+2、非交互式登录：
+(1)su UserName
+(2)图形界面下打开的终端
+(3)执行脚本
+(4)任何其它的bash实例
+执行顺序： ~/.bashrc(用户家目录下的)  --> /etc/bashrc --> /etc/profile.d/*.sh
+
+二、bash的配置文件
+1、按生效范围划分，有两类：
+
+全局配置：
+/etc/profile
+　　/etc/profile.d/*.sh （注：有可能会没有权限读取，执行不了）
+/etc/bashrc
+个人配置：
+~/.bash_profile
+~/.bashrc
+2、按功能划分，存在两类：
+
+profile类：为交互式登录的shell提供配置
+全局：/etc/profile, /etc/profile.d/*.sh
+个人：~/.bash_profile
+功用：用于定义环境变量；用于运行命令或脚本
+(1) 用于定义环境变量
+
+(2) 运行命令或脚本
+
+bashrc类：为非交互式和交互式登录的shell提供配置
+全局：/etc/bashrc
+个人：~/.bashrc
+功用：用于定义命令别名；定义本地变量
+(1) 定义命令别名和函数
+
+(2) 定义本地变量
+
+3.修改profile和bashrc文件后需生效
+两种方法:
+1重新启动shell进程
+2 . 或source（注：副作用，任何一个变量被重新赋值就表示读取现有的值再加上新有的值）
+例:
+. ~/.bashrc
+
+注意：（1） . 或source 是在当前shell中生效；bash file 是开一个子进程去生效。
+（2） 脚本中不支持别名
+
+三、bash退出任务
+退出时运行的脚本
+保存在~/.bash_logout文件中（用户）
+在退出登录shell时运行，常用于：
+
+创建自动备份
+清除临时文件
+四、练习
+1、让所有用户的PATH环境变量的值多出一个路径，例如：/usr/local/apache/bin
+在 /etc/profile.d/env. sh 文件，重新添加PATH变量。
+
+PS1="\[\e[1;36m\][\u@\h \W]\\$\[\e[0m\]"
+PATH=/usr/local/apache/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+
+echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+ 
+
+2、用户root登录时，将命令指示符变成红色，并自动启用如下别名：
+
+rm=‘rm –i’
+cdnet=‘cd /etc/sysconfig/network-scripts/’
+editnet=‘vim /etc/sysconfig/network-scripts/ifcfg-eth0’
+editnet=‘vim /etc/sysconfig/network-scripts/ifcfg-eno16777736 或 ifcfg-ens33 ’ (如果系统是CentOS7)
+ 
+
+
+命令符红色：
+
+在/etc/profile.d/env.sh中定义
+PS1="\[\e[1;31m22\][\u@\h \W]\\$\[\e[0m\]"
+ 
+
+定义别名：
+
+在 ~/.bashrc中将放入以下命令：
+alias rm=‘rm –i’
+alias cdnet=‘cd /etc/sysconfig/network-scripts/’
+alias editnet=‘vim /etc/sysconfig/network-scripts/ifcfg-eth0’
+alias editnet=‘vim  /etc/sysconfig/network-scripts/ifcfg-eno16777736 或  ifcfg-ens33 ’ 
+ 
+
+3、任意用户登录系统时，显示红色字体的警示提醒信息“Hi,dangerous ！”
+在/etc/profile.d/env.sh 中添加
+
+echo -e "\e[1;31mHi,dangerous ! \e[0m"
+人的思维，观点是一直都会进化的。如果现在的思维，观点看法；和十年前的一模一样的话。那就可以说，你这十年是白活的。
+
+
+coc 								改变量名插件
+simplyfold				折叠代码段
+undotree					code modified history
+
+
+
+可以下载文件,可以运行crontab,自动备份手机照片
+视频服务器,
+
+可以翻墙
+可以轻松下载视频
+
+下载视频
+要可以外网访问
+备份文件
+
