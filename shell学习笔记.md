@@ -101,13 +101,13 @@ yay -S [software package name]  # Packages from the AUR
 sudo pacman -U [/package_path/][software package name.pkg.tar.xz] # 从本地安装
 pacman -U http://www.examplepackage/repo/examplepkg.tar.xz # 从网络安装【非官方仓库】
 
-##2.8 卸载软件
+##2.8 卸载软件  
 sudo pacman -R [software package name] 
-sudo pacman -Rs [software package name] # 同时删除依赖
-sudo pacman -Rns [software package name] # 删除软件及其依赖，还有pacman生成的配置文件，即更彻底的删除
-2.9 清空缓存【默认情况下安装软件会先来缓存中查看是否已经下载过，没有再去下载，软件安装后通常下载缓存还在】
-sudo pacman -Sc
-sudo pacman -Scc # 更彻底的清理
+sudo pacman -Rs [software package name] # 同时删除依赖  
+sudo pacman -Rns [software package name] # 删除软件及其依赖，还有pacman生成的配置文件，即更彻底的删除  
+2.9 清空缓存(默认情况下安装软件会先来缓存中查看是否已经下载过，没有再去下载，软件安装后通常下载缓存还在)  
+sudo pacman -Sc  
+sudo pacman -Scc # 更彻底的清理  
 关于 pacman 常用就这些了，更多请使用 man pacman OR pacman -h 去查看
 解压tar.xz文件：
  xz -d xxx.tar.xz 将 xxx.tar.xz解压成 xxx.tar 然后，再用 tar xvf xxx.tar来解包。
