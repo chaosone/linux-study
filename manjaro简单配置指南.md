@@ -1,21 +1,20 @@
 ## 1.修改pacman镜像源
-[archlinuxcn]
-SigLevel = Never
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
-2.sudo pacman-mirrors -c China
+[archlinuxcn]  
+SigLevel = Never  
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch  
+2.sudo pacman-mirrors -c China  
 ### ZSH config.
 
-1. 安装zsh 
+1. 安装zsh   
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  
 
-2. 安装oh-my-zsh 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-zshrc的插件加载路径的默认文件夹是:
-~/.oh-my-zsh/custom/plugins
-
+2. 安装oh-my-zsh   
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"  
+zshrc的插件加载路径的默认文件夹是:  
+~/.oh-my-zsh/custom/plugins  
 ## install nodejs npm packmanager
-$ sudo pacman -S nodejs npm
+$ sudo pacman -S nodejs npm  
 ## install youtube-dl interactive
 ```npm install -g youtube-dl-interactive```
 
@@ -31,7 +30,6 @@ pip install thefuck
 ```
 **note:when you are using pip, you should use sudo to get the root permission **
 # install  ranger-fm
-
 ### 显示系统时间信息
 ```timedatectl status```
 arch更新显卡驱动：
@@ -53,6 +51,6 @@ Uncoment the line below to force the login screen to use Xorg
 重启电脑,解决.
 
 ### 字体相关
-###更新字体缓存以生效（部分软件需重启软件才能生效）：
-$ fc-cache -fv
-fs-cache -fv
+更新字体缓存以生效（部分软件需重启软件才能生效）:  
+$ fc-cache -fv  
+fs-cache -fv  
