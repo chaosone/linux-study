@@ -1,21 +1,18 @@
-terminal 是终端仿真器应用程序 比如iterm  
+>terminal 是终端仿真器应用程序 比如iterm  
 shell 是linux与系统交互的一个程序  比如fish,bash,zsh  
 
-rwx权限解释:  
+- **rwx权限解释:**  
 对于文件   				r read			w edit 				x  execute
 对于文件夹 				r 读取目录内容 		w  				x
 
 
-axel参数:  
+#### axel args:
 -a 	显示简单进度条,一般带上好点  
 -o /path/filename		指定文件名,如果不带filename,则存为默认文件名(网站上的文件名)  
 -n 10								指定下载线程为10  
   
-  
-207.148.74.66  
-
-=========================================================================
-**- wget参数** <++> 
+-----  
+- **wget参数**   
 -b					后台下载  
 -c 				继续执行上次的任务  
 -i url.txt	从url.txt获取下载链接  
@@ -25,7 +22,8 @@ axel参数:
 --limit-rate=400k	限制  
 
 
-wget -r -A.pdf http://url-to-webpage-with-pdfs/	  -A参数表示只下载pdf格式的文件  
+```wget -r -A.pdf http://url-to-webpage-with-pdfs/	  -A参数表示只下载pdf格式的文件  ```
+
 
 
 ===========================================================================  
@@ -40,7 +38,7 @@ wget -r -A.pdf http://url-to-webpage-with-pdfs/	  -A参数表示只下载pdf格�
 
 
 ========================================================================================
-更改系统时间:
+## 更改系统时间:
 在linux中计算机有两个时钟,一个是硬件时钟(real time clock),一个是系统时钟(system clock)  
 硬件时钟通过BIOS电池运行,系统时钟通过cpu tick运行,默认情况下系统时间不会和硬件时间同步  
 查看时间:  
@@ -86,19 +84,21 @@ musicbox快捷键:
 - 在软件仓库中搜索软件
   sudo pacman -Ss [software package name]
 - 查看已安装软件
+```bash
 sudo pacman -Qs [software package name]  
 sudo pacman -Qi [software package name] # 附带详细信息  
 sudo pacman -Qii [software package name] # 附带更加详细的包信息  
+```
 sudo pacman -Ql # 列出所有安装的软件包  
-2.4 查看软件的详细依赖
+2.4 查看软件的详细依赖  
 sudo pactree [software package name]
-2.5 查看系统中那些没有被使用软件依赖包（orphans）
-sudo pacman -Qdt
-2.6 自动移除那些系统中没有被使用的依赖包【类似于Debian下的 sudo apt autoremove --purge】
-sudo pacman -Rs $(pacman -Qdtq)
-2.7 下载并安装软件包
-sudo pacman -Syu [software package name] #从软件仓库安装
-yay -S [software package name]  # Packages from the AUR
+2.5 查看系统中那些没有被使用软件依赖包（orphans）  
+sudo pacman -Qdt  
+2.6 自动移除那些系统中没有被使用的依赖包【类似于Debian下的 sudo apt autoremove --purge】  
+sudo pacman -Rs $(pacman -Qdtq)  
+2.7 下载并安装软件包  
+sudo pacman -Syu [software package name] #从软件仓库安装  
+yay -S [software package name]  # Packages from the AUR  
 - 从本地安装:  
 sudo pacman -U [/package_path/][software package name.pkg.tar.xz] # 从本地安装
 - 从网络安装(not offical reposity):  
@@ -121,10 +121,11 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 =======================================================================================
 
-ssh连接远程主机:
-ssh user@xxx.xxx.xxx.xxx
-scp -r user@remoteip:remotefolder localfolder		从远程服务器拷贝到本地
-scp local_file remote_ip:remote_file
+**ssh连接远程主机:**  
+ssh user@xxx.xxx.xxx.xxx  
+**scp命令**   
+scp -r user@remoteip:remotefolder localfolder		#从远程服务器拷贝到本地  
+scp local_file remote_ip:remote_file        #从本地拷贝到远程服务器  
 
 
 查看文件 
@@ -210,4 +211,9 @@ scp ~/doc/shell学习笔记 @root@136.244.109.14:/root/     #从本地复制到�
 ln命令
 硬链接：
 ln 原文件 目标链接path
+
+**some bold text** and some *italic text*   
+### [baidu](http://www.baidu.com) 
+
+
 
