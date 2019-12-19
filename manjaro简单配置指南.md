@@ -18,7 +18,6 @@ $ sudo pacman -S nodejs npm
 ## install youtube-dl interactive
 ```npm install -g youtube-dl-interactive```
 
-
 ```
 ### some useful apps:
 sudo pacman -S mplayer
@@ -32,15 +31,17 @@ pip install thefuck
 # install  ranger-fm
 ### 显示系统时间信息
 ```timedatectl status```
-arch更新显卡驱动：
+**arch更新显卡驱动：**   
 $ sudo pacman -S xf86-video-intel intel-media-driver vulkan-intel xf86-video-amdgpu xf86-video-ati mesa-vdpau vulkan-radeon
 
 ### Arch安装Gnome:
+```
 $ sudo pacman -S xorg xorg-server xorg-xinit gnome gnome-extra
 $ systemctl enable gdm
+```
 
 发现会有卡顿，将 Wayland 更改为 Xorg：
-$ sudo vim /etc/gdm/custom.conf
+$ sudo vim /etc/gdm/custom.conf  
 更改：
 ```
 [daemon]
