@@ -55,3 +55,8 @@ Uncoment the line below to force the login screen to use Xorg
 更新字体缓存以生效（部分软件需重启软件才能生效）:  
 $ fc-cache -fv  
 fs-cache -fv  
+
+**阿里云ntp服务器** 
+ntp1.aliyun.com
+ntpdate -u ntp1.aliyun.com
+

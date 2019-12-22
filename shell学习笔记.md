@@ -215,5 +215,19 @@ ln 原文件 目标链接path
 **some bold text** and some *italic text*   
 ### [baidu](http://www.baidu.com) 
 
+sudo dd if=/dev/sdc1 /run/media/why/新加卷/chipfancer-disk/1.zip bs=1M
 
+### 格式化某个分区 -f参数是快速格式化  
+sudo mkfs.ntfs -f /dev/sdc1  
+
+## dd命令用法  
+### 备份MBR内容  
+dd if=/dev/sda of=mbr bs=512 count=1  
+### 将文件中所有小写字母转换成大写字母，并输出到标准输出  
+
+### dd把文件内的所有小写字母转换成大写  
+dd if=file.txt status=none conv=ucase  
+
+### 复制某个分区到某个目录
+sudo dd if=/dev/sdc1 /run/media/why/新加卷/chipfancer-disk/1.zip bs=1M  
 
