@@ -194,17 +194,18 @@ ssr http proxy settings:
 export http_proxy="http://127.0.0.1:12333"
 export https_proxy="http://127.0.0.1:12333"
 
-sudo mkfs.ntfs -f /dev/sdc1		#-f表示快速格式化 perform a quick form file
-sudo mkfs.ext4 -T largefile /dev/sdb1		
-#遇到问题先仔细看看man或者 -h 里面选项都有说明,通常这都比google来的快
-fdisk  /dev/sdc1 			#指定磁盘进行磁盘操作
-m 											#查看指令菜单
-n 											#新建一个分区
-d 											#删除一个分区
-每个块磁盘至少主分区(primary),必须有1个,扩展分区(extend)0-3个,逻辑分区可以有0-n个.
+sudo mkfs.ntfs -f /dev/sdc1		
+-f表示快速格式化 perform a quick form file  
+sudo mkfs.ext4 -T largefile /dev/sdb1  		
+###遇到问题先仔细看看man或者 -h 里面选项都有说明,通常这都比google来的快
+fdisk  /dev/sdc1 			#指定磁盘进行磁盘操作  
+m 											#查看指令菜单  
+n 											#新建一个分区  
+d 											#删除一个分区  
+每个块磁盘至少主分区(primary),必须有1个,扩展分区(extend)0-3个,逻辑分区可以有0-n个.  
 
-youtube-dl -r 300k				#限制下载速度为300k
-youtube-dl --proxy socks5://127.0.0.1 
+youtube-dl -r 300k				#限制下载速度为300k  
+youtube-dl --proxy socks5://127.0.0.1   
 scp root@136.244.109.14:/root/ssr.sh ~/music 			#从远程主机拷贝文件到本地  
 scp ~/doc/shell学习笔记 @root@136.244.109.14:/root/     #从本地复制到远程服务器  
 
@@ -231,3 +232,40 @@ dd if=file.txt status=none conv=ucase
 #### 复制某个分区到某个目录
 sudo dd if=/dev/sdc1 /run/media/why/新加卷/chipfancer-disk/1.zip bs=1M 	 
 
+#### vim配置：
+vnoremap Y "+y 		#可视模式下复制到系统剪贴板
+
+### 调整zsh光标,写入模式为'|',普通模式是方块
+#function zle-line-init zle-keymap-select {
+	#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
+	#RPS2=$RPS1
+	#zle reset-prompt
+#}
+
+function zle-keymap-select {
+	if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+		echo -ne '\e[1 q'
+	elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+		echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+
+# Use beam shape cursor for each new prompt.
+preexec() {
+	echo -ne '\e[5 q'
+}
+
+_fix_cursor() {
+	echo -ne '\e[5 q'
+}
+precmd_functions+=(_fix_cursor)
+
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+KEYTIMEOUT=1
