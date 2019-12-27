@@ -237,6 +237,7 @@ vnoremap Y "+y 		#可视模式下复制到系统剪贴板
 
 ### 调整zsh光标,写入模式为'|',普通模式是方块
 #function zle-line-init zle-keymap-select {
+```
 	#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
 	#RPS2=$RPS1
 	#zle reset-prompt
@@ -269,3 +270,4 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 KEYTIMEOUT=1
+```
